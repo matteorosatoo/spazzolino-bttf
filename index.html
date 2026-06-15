@@ -384,34 +384,6 @@
     border: 1px solid var(--gold); color: var(--gold-dark); background: rgba(200,184,122,.1);
   }
 
-  /* ============ ANATOMIA ============ */
-  #anatomia .sticky-wrap { height: 260vh; position: relative; }
-  #anatomia .sticky {
-    position: sticky; top: 0; height: 100vh;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
-  }
-  .anat-grid {
-    display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: center;
-    max-width: var(--maxw); padding: 0 24px; width: 100%;
-  }
-  @media (max-width: 880px) { .anat-grid { grid-template-columns: 1fr; gap: 20px; } }
-  .anat-svg { height: min(72vh, 640px); margin: 0 auto; display: block; overflow: visible; }
-  .anat-part { transition: transform .1s linear; }
-  .anat-lab { font-size: 10px; fill: var(--alu); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
-  .anat-lab.on { fill: var(--gold-dark); }
-  .anat-line { stroke: rgba(26,26,26,.25); stroke-width: 1; }
-  .anat-steps { display: flex; flex-direction: column; gap: 14px; }
-  .anat-step {
-    border-left: 2px solid var(--line); padding: 6px 0 6px 20px;
-    opacity: .3; transition: opacity .4s, border-color .4s;
-  }
-  .anat-step.on { opacity: 1; border-color: var(--gold); }
-  .anat-step h4 { font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
-  .anat-step p { font-size: 12.5px; color: #666; font-weight: 300; margin-top: 2px; }
-  @media (max-width: 880px) {
-    .anat-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .anat-step p { display: none; }
-  }
 
   /* ============ CICLO DI VITA ============ */
   #ciclo .cycle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
@@ -597,8 +569,7 @@
       <h2 class="sec-title">Un oggetto quotidiano,<br>progettato per essere buttato</h2>
       <p class="sec-desc">
         Lo spazzolino elettrico medio è un blocco di plastica con dentro un motore e una batteria
-        incollata: quando la batteria si esaurisce — in genere dopo 3–5 anni — si getta tutto.
-        Packaging compreso.
+        incollata: quando la batteria si esaurisce si getta tutto.
       </p>
     </div>
 
@@ -621,7 +592,7 @@
             <div class="note">sostituito per intero ogni 3–4 mesi (ADA <a href="#fonti" style="color:inherit;">[F3]</a>)</div>
           </div>
           <div class="row">
-            <div class="lab"><span>Elettrico in plastica</span><span>3–5 anni</span></div>
+            <div class="lab"><span>Elettrico in plastica</span><span>~5 anni</span></div>
             <div class="track"><div class="fill gray" data-w="40%"></div></div>
             <div class="note">fine vita = batteria incollata, non sostituibile <a href="#fonti" style="color:inherit;">[F4]</a></div>
           </div>
@@ -630,7 +601,7 @@
             <div class="track"><div class="fill gold" data-w="100%"></div></div>
             <div class="note">un unico corpo; la batteria si estrae e si sostituisce</div>
           </div>
-          <div class="factor">×2–3 la vita del corpo rispetto all'elettrico convenzionale</div>
+          <div class="factor">×2 la vita del corpo rispetto all'elettrico convenzionale</div>
         </div>
       </div>
 
@@ -639,9 +610,9 @@
         <div class="sub">Cosa resta dopo dieci anni d'uso</div>
         <div class="waste-compare">
           <div class="waste-col">
-            <div class="cap"><b>Elettrico convenzionale</b>2–3 corpi completi + 40 testine in plastica</div>
+            <div class="cap"><b>Elettrico convenzionale</b>2 corpi completi + 40 testine in plastica</div>
             <div class="pictos" data-anim="pictos">
-              <!-- 3 corpi + 40 testine generati via JS -->
+              <!-- 2 corpi + 40 testine generati via JS -->
             </div>
             <div class="waste-sum">≈ <b>2,8 kg</b> di plastica mista, motori e batterie <a href="#fonti" style="color:inherit;">[F1]</a></div>
           </div>
@@ -660,9 +631,9 @@
         <div class="sub">Stima CO₂ equivalente del ciclo di vita — materiali, produzione, trasporto, uso*</div>
         <div class="co2" data-anim="co2">
           <div class="col">
-            <div class="val"><span data-count="8.5" data-dec="1">0</span> kg CO₂e</div>
-            <div class="bar gray" data-h="200px"></div>
-            <div class="who">Elettrico convenzionale<br>2–3 corpi + 40 testine in PP</div>
+            <div class="val"><span data-count="7.0" data-dec="1">0</span> kg CO₂e</div>
+            <div class="bar gray" data-h="165px"></div>
+            <div class="who">Elettrico convenzionale<br>2 corpi + 40 testine in PP</div>
           </div>
           <div class="col">
             <div class="val"><span data-count="3.3" data-dec="1">0</span> kg CO₂e</div>
@@ -671,7 +642,7 @@
           </div>
         </div>
         <p style="font-size:11.5px;color:var(--alu);margin-top:18px;font-weight:300;">
-          * Stima di progetto bottom-up (intervalli: 6–11 e 2,5–4,5 kg) su fattori di emissione da fonti primarie:
+          * Stima di progetto bottom-up (intervalli: 5,5–8,5 e 2,5–4,5 kg) su fattori di emissione da fonti primarie:
           alluminio IAI <a href="#fonti" style="color:var(--gold-dark);">[F5]</a>, bioplastiche <a href="#fonti" style="color:var(--gold-dark);">[F6][F7]</a>,
           batterie IVL <a href="#fonti" style="color:var(--gold-dark);">[F10]</a>, elettricità ISPRA <a href="#fonti" style="color:var(--gold-dark);">[F11]</a>.
           Metodo e passaggi completi nel documento <em>Calcoli e fonti</em> del progetto. Riscontro: nell'unica LCA peer-reviewed sugli spazzolini
@@ -694,16 +665,16 @@
       <div class="goal rise d1">
         <div class="n">GOAL 01</div>
         <h3>Durabilità</h3>
-        <p>Il corpo in alluminio 6061 anodizzato, lavorato dal pieno in CNC, è progettato per superare i dieci anni di servizio — il doppio o il triplo di un elettrico convenzionale, che muore con la batteria incollata dopo 3–5 anni.</p>
+        <p>Il corpo in alluminio 6061 anodizzato, lavorato dal pieno in CNC, è progettato per superare i dieci anni di servizio — il doppio di un elettrico convenzionale, che muore con la batteria incollata dopo circa 5 anni.</p>
         <div class="viz mini-compare" data-anim="mini">
-          <div class="mc-row"><span>Plastica</span><div class="mc-bar"><span class="mc-fill" style="background:#c9c8c2" data-w="40%"></span></div><b>3–5 anni</b></div>
+          <div class="mc-row"><span>Plastica</span><div class="mc-bar"><span class="mc-fill" style="background:#c9c8c2" data-w="40%"></span></div><b>~5 anni</b></div>
           <div class="mc-row"><span>Alluminio</span><div class="mc-bar"><span class="mc-fill" style="background:var(--gold)" data-w="100%"></span></div><b>10+ anni</b></div>
         </div>
       </div>
       <div class="goal rise d2">
         <div class="n">GOAL 02</div>
         <h3>Minimo scarto</h3>
-        <p>L'unico componente consumabile è la testina: quattro all'anno, agganciate a snap fit, in bioplastica con setole vegetali. L'elettrico convenzionale aggiunge un corpo intero — motore e batteria compresi — ogni 3–5 anni.</p>
+        <p>L'unico componente consumabile è la testina: quattro all'anno, agganciate a snap fit, in bioplastica con setole vegetali. L'elettrico convenzionale aggiunge un corpo intero — motore e batteria compresi — ogni 5 anni circa.</p>
         <div class="viz mini-compare" data-anim="mini">
           <div class="mc-row"><span>Tradizionale</span><div class="mc-bar"><span class="mc-fill" style="background:#c9c8c2" data-w="100%"></span></div><b>~280 g/anno</b></div>
           <div class="mc-row"><span>BTTF</span><div class="mc-bar"><span class="mc-fill" style="background:var(--gold)" data-w="9%"></span></div><b>~26 g/anno</b></div>
@@ -712,7 +683,7 @@
       <div class="goal rise d3">
         <div class="n">GOAL 03</div>
         <h3>Riciclabilità totale</h3>
-        <p>Due o tre giri di vite aprono il corpo senza attrezzi: ogni componente si separa a mano e ha un flusso di riciclo definito. Niente colle, niente batterie prigioniere.</p>
+        <p>Due giri di vite aprono il corpo senza attrezzi: ogni componente si separa a mano e ha un flusso di riciclo definito. Niente colle, niente batterie prigioniere.</p>
         <div class="viz flow-dots">
           <span><i style="background:var(--m-al)"></i>Alluminio</span>
           <span><i style="background:var(--m-pom)"></i>POM</span>
@@ -813,115 +784,11 @@
   </div>
 </section>
 
-<!-- ================= ANATOMIA ================= -->
-<section id="anatomia" class="alt" style="padding:0;">
-  <div class="sticky-wrap">
-    <div class="sticky">
-      <div class="anat-grid">
-        <div>
-          <div class="sec-kicker" style="margin-bottom:18px;">05 — Anatomia</div>
-          <svg class="anat-svg" id="anat-svg" viewBox="0 0 220 600" aria-label="Vista esplosa dello spazzolino">
-            <defs>
-              <!-- gradienti orizzontali: simulano la curvatura dei cilindri -->
-              <linearGradient id="gAlu" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#8f8e89"/>
-                <stop offset=".16" stop-color="#d3d2cc"/>
-                <stop offset=".45" stop-color="#f2f1ec"/>
-                <stop offset=".78" stop-color="#b4b3ad"/>
-                <stop offset="1" stop-color="#83827d"/>
-              </linearGradient>
-              <linearGradient id="gPom" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#c6c4bd"/>
-                <stop offset=".45" stop-color="#f5f4ef"/>
-                <stop offset="1" stop-color="#aeaca5"/>
-              </linearGradient>
-              <linearGradient id="gBio" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#b3bca6"/>
-                <stop offset=".45" stop-color="#e6ebdc"/>
-                <stop offset="1" stop-color="#9ca78e"/>
-              </linearGradient>
-              <linearGradient id="gSteel" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#969696"/>
-                <stop offset=".5" stop-color="#dcdcdc"/>
-                <stop offset="1" stop-color="#848484"/>
-              </linearGradient>
-              <radialGradient id="gPin" cx=".35" cy=".35" r=".9">
-                <stop offset="0" stop-color="#ecdfae"/>
-                <stop offset="1" stop-color="#a8954e"/>
-              </radialGradient>
-            </defs>
-            <!-- TESTINA -->
-            <g class="anat-part" id="ap-testina">
-              <ellipse cx="110" cy="70" rx="21" ry="33" fill="url(#gBio)" stroke="#8d987e"/>
-              <ellipse cx="103" cy="60" rx="8" ry="16" fill="rgba(255,255,255,.3)"/>
-              <g fill="#f8f7f1" stroke="#c2cab2" stroke-width=".6">
-                <circle cx="102" cy="52" r="3.2"/><circle cx="112" cy="49" r="3.2"/><circle cx="119" cy="58" r="3.2"/>
-                <circle cx="100" cy="66" r="3.2"/><circle cx="110" cy="64" r="3.2"/><circle cx="119" cy="72" r="3.2"/>
-                <circle cx="101" cy="80" r="3.2"/><circle cx="111" cy="79" r="3.2"/><circle cx="117" cy="87" r="3.2"/>
-              </g>
-              <path d="M105 102 C105 114 106 124 107 150 L113 150 C114 124 115 114 115 102 Z" fill="url(#gBio)" stroke="#8d987e"/>
-              <line class="anat-line" x1="132" y1="70" x2="178" y2="70"/>
-              <text class="anat-lab" x="182" y="66">Testina</text>
-              <text class="anat-lab" x="182" y="78" style="font-weight:400;text-transform:none;letter-spacing:0;">amido di mais + PA11</text>
-            </g>
-            <!-- COLLO -->
-            <g class="anat-part" id="ap-collo">
-              <rect x="106" y="152" width="8" height="10" rx="2" fill="url(#gSteel)" stroke="#8a8a8a" stroke-width=".8"/>
-              <path d="M103 162 L117 162 C118 176 120 192 121 210 L121 230 L99 230 L99 210 C100 192 102 176 103 162 Z" fill="url(#gPom)" stroke="#a09e97"/>
-              <path d="M101 172 C107 174 113 174 119 172" fill="none" stroke="rgba(0,0,0,.14)"/>
-              <ellipse cx="105" cy="198" rx="2.5" ry="20" fill="rgba(255,255,255,.35)"/>
-              <line class="anat-line" x1="124" y1="195" x2="178" y2="195"/>
-              <text class="anat-lab" x="182" y="191">Collo</text>
-              <text class="anat-lab" x="182" y="203" style="font-weight:400;text-transform:none;letter-spacing:0;">POM · snap fit anulare</text>
-            </g>
-            <!-- CORPO SUPERIORE -->
-            <g class="anat-part" id="ap-corposup">
-              <path d="M96 244 L124 244 C129 254 131 270 131 290 L131 392 L89 392 L89 290 C89 270 91 254 96 244 Z" fill="url(#gAlu)" stroke="#82817c"/>
-              <rect x="95" y="262" width="5" height="120" rx="2.5" fill="rgba(255,255,255,.32)"/>
-              <path d="M90 380 H130 M90 384 H130 M90 388 H130" stroke="rgba(0,0,0,.2)" stroke-width="1"/>
-              <rect x="100" y="296" width="20" height="78" rx="7" fill="none" stroke="#7d7c77" stroke-width="1.1" stroke-dasharray="4 4"/>
-              <text class="anat-lab" x="40" y="335" text-anchor="end" style="font-weight:400;text-transform:none;letter-spacing:0;">motore 260 Hz</text>
-              <line class="anat-line" x1="44" y1="331" x2="86" y2="331"/>
-              <line class="anat-line" x1="134" y1="268" x2="178" y2="268"/>
-              <text class="anat-lab" x="182" y="264">Corpo superiore</text>
-              <text class="anat-lab" x="182" y="276" style="font-weight:400;text-transform:none;letter-spacing:0;">Al 6061 anodizzato</text>
-            </g>
-            <!-- CORPO INFERIORE (con i pogo pin sul fondo) -->
-            <g class="anat-part" id="ap-corpoinf">
-              <path d="M89 406 L131 406 L131 548 C131 562 122 568 110 568 C98 568 89 562 89 548 Z" fill="url(#gAlu)" stroke="#82817c"/>
-              <path d="M90 410 H130 M90 414 H130 M90 418 H130" stroke="rgba(0,0,0,.2)" stroke-width="1"/>
-              <rect x="95" y="426" width="5" height="116" rx="2.5" fill="rgba(255,255,255,.32)"/>
-              <rect x="100" y="432" width="20" height="98" rx="8" fill="none" stroke="#7d7c77" stroke-width="1.1" stroke-dasharray="4 4"/>
-              <text class="anat-lab" x="40" y="483" text-anchor="end" style="font-weight:400;text-transform:none;letter-spacing:0;">batteria Li-ion 3,7 V</text>
-              <line class="anat-line" x1="44" y1="479" x2="94" y2="479"/>
-              <circle cx="101" cy="560" r="3" fill="url(#gPin)" stroke="#8a7a3e" stroke-width=".7"/>
-              <circle cx="110" cy="563" r="3" fill="url(#gPin)" stroke="#8a7a3e" stroke-width=".7"/>
-              <circle cx="119" cy="560" r="3" fill="url(#gPin)" stroke="#8a7a3e" stroke-width=".7"/>
-              <line class="anat-line" x1="134" y1="430" x2="178" y2="430"/>
-              <text class="anat-lab" x="182" y="426">Corpo inferiore</text>
-              <text class="anat-lab" x="182" y="438" style="font-weight:400;text-transform:none;letter-spacing:0;">filettatura di apertura</text>
-              <line class="anat-line" x1="124" y1="563" x2="178" y2="563"/>
-              <text class="anat-lab" x="182" y="559">Pogo pin</text>
-              <text class="anat-lab" x="182" y="571" style="font-weight:400;text-transform:none;letter-spacing:0;">ricarica magnetica 5 V</text>
-            </g>
-          </svg>
-        </div>
-        <div class="anat-steps" id="anat-steps">
-          <div class="anat-step" data-k="0"><h4>Testina</h4><p>Si sgancia con un gesto: snap fit anulare, sostituzione ogni 3–4 mesi.</p></div>
-          <div class="anat-step" data-k="1"><h4>Collo in POM</h4><p>Trasmette la vibrazione a 260 Hz e sigilla il corpo: nessun pulsante, nessun foro.</p></div>
-          <div class="anat-step" data-k="2"><h4>Corpo superiore</h4><p>Alluminio dal pieno; all'interno, il motore sonico su supporto smorzante.</p></div>
-          <div class="anat-step" data-k="3"><h4>Corpo inferiore</h4><p>Si svita in 2–3 giri: la batteria si estrae senza attrezzi. Sul fondo, i tre pogo pin magnetici per la ricarica.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= CICLO DI VITA ================= -->
 <section id="ciclo" class="dark-sec">
   <div class="wrap">
     <div class="sec-head rise">
-      <div class="sec-kicker">06 — Ciclo di vita</div>
+      <div class="sec-kicker">05 — Ciclo di vita</div>
       <h2 class="sec-title">Pensato fino all'ultimo giorno</h2>
       <p class="sec-desc">La maggior parte dei prodotti viene progettata fino al momento della vendita. Questo è stato progettato fino al momento in cui smette di esistere — e torna materia prima.</p>
     </div>
@@ -944,24 +811,6 @@
         </div>
       </div>
     </div>
-
-    <div class="cycle-compare rise">
-      <h3>Dieci anni, due destini</h3>
-      <div class="tl" data-anim="tl">
-        <div class="who">Spazzolino elettrico tradizionale</div>
-        <div class="lane" data-fill="dead"></div>
-        <div class="cap">2–3 corpi completi — plastica, motori e batterie incollate — più 40 testine in plastica: RAEE e indifferenziata.</div>
-      </div>
-      <div class="tl" data-anim="tl">
-        <div class="who">Back to the Future</div>
-        <div class="lane" data-fill="alive"></div>
-        <div class="cap">Un solo corpo in servizio per tutto il periodo; ogni trattino verde è una testina bio-based.</div>
-      </div>
-      <p class="cycle-closer rise">
-        Niente di tutto questo finisce in discarica.<br>
-        <em>Ogni componente sa già dove andare.</em>
-      </p>
-    </div>
   </div>
 </section>
 
@@ -969,7 +818,7 @@
 <section id="specifiche">
   <div class="wrap">
     <div class="sec-head rise">
-      <div class="sec-kicker">07 — Specifiche tecniche</div>
+      <div class="sec-kicker">06 — Specifiche tecniche</div>
       <h2 class="sec-title">I numeri, senza retorica</h2>
     </div>
     <div class="spec-acc rise">
@@ -979,16 +828,6 @@
           <div class="spec-row"><div class="k">Lunghezza totale</div><div class="v">157,5 mm</div></div>
           <div class="spec-row"><div class="k">Corpo</div><div class="v">Alluminio 6061 anodizzato, due parti a vite<small>Lavorazione CNC dal pieno</small></div></div>
           <div class="spec-row"><div class="k">Collo</div><div class="v">POM / Delrin</div></div>
-          <div class="spec-row"><div class="k">Impermeabilità</div><div class="v">IPX7<small>Immersione a 1 metro per 30 minuti</small></div></div>
-        </div>
-      </details>
-      <details>
-        <summary>Elettronica e ricarica</summary>
-        <div class="spec-rows">
-          <div class="spec-row"><div class="k">Alimentazione</div><div class="v">3,7 V DC — batteria Li-ion 14500 · 800 mAh (3 Wh)<small>Estraibile e sostituibile senza attrezzi</small></div></div>
-          <div class="spec-row"><div class="k">Ricarica</div><div class="v">Pogo pin magnetici 5 V / 1 A<small>Ricarica completa in ~2 ore (≈0,5C) · allineamento automatico</small></div></div>
-          <div class="spec-row"><div class="k">Frequenza di oscillazione</div><div class="v">~31.000 mov/min (260 Hz)<small>In linea con gli spazzolini sonici di riferimento <a href="#fonti" style="color:inherit;">[F13]</a></small></div></div>
-          <div class="spec-row"><div class="k">Autonomia</div><div class="v">~30 giorni<small>2 sessioni/giorno da 2 min ≈ 2 h di moto · assorbimento medio ~1,5 W</small></div></div>
         </div>
       </details>
       <details>
@@ -1001,10 +840,20 @@
         </div>
       </details>
       <details>
+        <summary>Elettronica e ricarica</summary>
+        <div class="spec-rows">
+          <div class="spec-row"><div class="k">Alimentazione</div><div class="v">3,7 V DC — batteria Li-ion 14500 · 800 mAh (3 Wh)<small>Estraibile e sostituibile senza attrezzi</small></div></div>
+          <div class="spec-row"><div class="k">Ricarica</div><div class="v">Pogo pin magnetici 5 V / 1 A<small>Ricarica completa in ~2 ore (≈0,5C) · allineamento automatico</small></div></div>
+          <div class="spec-row"><div class="k">Frequenza di oscillazione</div><div class="v">~31.000 mov/min (260 Hz)<small>In linea con gli spazzolini sonici di riferimento <a href="#fonti" style="color:inherit;">[F13]</a></small></div></div>
+          <div class="spec-row"><div class="k">Autonomia</div><div class="v">~30 giorni<small>2 sessioni/giorno da 2 min ≈ 2 h di moto · assorbimento medio ~1,5 W</small></div></div>
+          <div class="spec-row"><div class="k">Impermeabilità</div><div class="v">IPX7<small>Immersione a 1 metro per 30 minuti</small></div></div>
+        </div>
+      </details>
+      <details>
         <summary>Fine vita</summary>
         <div class="spec-rows">
-          <div class="spec-row"><div class="k">Apertura</div><div class="v">A vite, 2–3 giri in senso antiorario<small>Smontaggio completo senza attrezzi</small></div></div>
-          <div class="spec-row"><div class="k">Batteria</div><div class="v">Sostituibile dall'utente<small>~1 sostituzione prevista nei 10 anni (vita cella 300–500 cicli)</small></div></div>
+          <div class="spec-row"><div class="k">Apertura</div><div class="v">A vite, 2 giri in senso antiorario<small>Smontaggio completo senza attrezzi</small></div></div>
+          <div class="spec-row"><div class="k">Batteria</div><div class="v">Sostituibile<small>~1 sostituzione prevista nei 10 anni (vita cella 300–500 cicli)</small></div></div>
           <div class="spec-row"><div class="k">Flussi di riciclo</div><div class="v">Alluminio · POM · PA11/PLA · Li-ion<small>Separabili manualmente, ognuno nella propria filiera · l'alluminio si rifonde senza perdita di proprietà <a href="#fonti" style="color:inherit;">[F5]</a></small></div></div>
         </div>
       </details>
@@ -1016,7 +865,7 @@
 <section id="tavole" class="alt">
   <div class="wrap">
     <div class="sec-head rise">
-      <div class="sec-kicker">08 — Tavole di progetto</div>
+      <div class="sec-kicker">07 — Tavole di progetto</div>
       <h2 class="sec-title">Il progetto, nei dettagli che contano</h2>
       <p class="sec-desc">Estratti dalle tavole tecniche e render di prodotto. Clicca per ingrandire, clicca di nuovo per lo zoom.</p>
     </div>
@@ -1043,7 +892,7 @@
       </div>
       <div class="gal-item rise d3" data-lb="5">
         <div class="frame"><img src="./web/thumb_render_ambientato.jpg" alt="Render ambientato del prodotto"></div>
-        <div class="gal-cap"><b>Render di prodotto</b><span>Vista ambientata</span></div>
+        <div class="gal-cap"><b>Render di prodotto</b><span>Vista da dietro</span></div>
       </div>
     </div>
   </div>
@@ -1053,9 +902,7 @@
 <section id="istruzioni">
   <div class="wrap">
     <div class="sec-head rise">
-      <div class="sec-kicker">09 — Istruzioni per l'uso</div>
-      <h2 class="sec-title">Nessun pulsante da spiegare</h2>
-      <p class="sec-desc">Si accende ruotando il corpo di 180°, si spegne ruotando nel senso opposto. Il foglio istruzioni accompagna il prodotto.</p>
+      <div class="sec-kicker">08 — Istruzioni per l'uso</div>
     </div>
     <div class="istr-grid">
       <div class="istr-card rise d1" data-lb="6">
@@ -1074,7 +921,7 @@
 <section id="fonti" class="alt">
   <div class="wrap">
     <div class="sec-head rise">
-      <div class="sec-kicker">10 — Fonti</div>
+      <div class="sec-kicker">09 — Fonti</div>
       <h2 class="sec-title">Da dove vengono i numeri</h2>
       <p class="sec-desc">Tutti i dati quantitativi del sito derivano da fonti primarie verificate o da calcoli di progetto dichiarati. Il procedimento completo, passo per passo, è nel documento <em>Calcoli e fonti</em> allegato al progetto.</p>
     </div>
@@ -1124,7 +971,7 @@
   <div id="lb-cap"></div>
 </div>
 
-<!-- ================= JS base: animazioni, contatori, lightbox, anatomia ================= -->
+<!-- ================= JS base: animazioni, contatori, lightbox ================= -->
 <script>
 (function () {
   'use strict';
@@ -1182,7 +1029,7 @@
 
   /* pittogrammi rifiuti */
   const leftP = document.querySelector('[data-anim="pictos"]');
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     const s = document.createElement('span');
     s.className = 'picto trash';
     s.style.transitionDelay = (i * 60) + 'ms';
@@ -1297,33 +1144,6 @@
     cyio.observe(svg);
   })();
 
-  /* anatomia: esplosione guidata dallo scroll */
-  (function () {
-    const wrapEl = document.querySelector('#anatomia .sticky-wrap');
-    const parts = [
-      { el: document.getElementById('ap-testina'),  dy: -110 },
-      { el: document.getElementById('ap-collo'),    dy: -56 },
-      { el: document.getElementById('ap-corposup'), dy: -12 },
-      { el: document.getElementById('ap-corpoinf'), dy: 46 }
-    ];
-    const steps = Array.from(document.querySelectorAll('.anat-step'));
-    let ticking = false;
-    function update() {
-      ticking = false;
-      const r = wrapEl.getBoundingClientRect();
-      const total = r.height - window.innerHeight;
-      const p = Math.min(1, Math.max(0, -r.top / total));
-      const ease = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-      parts.forEach(pt => { pt.el.style.transform = `translateY(${(pt.dy * ease).toFixed(1)}px)`; });
-      const k = Math.min(steps.length - 1, Math.floor(p * steps.length));
-      steps.forEach((s, i) => s.classList.toggle('on', i <= k && p > 0.04));
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  })();
-
   /* lightbox con zoom */
   const LB = [
     { src: './web/viste_quotate.jpg', cap: 'Vista quotata in sezione — lunghezza totale 157,5 mm · quote in mm (Tav. 9)' },
@@ -1331,7 +1151,7 @@
     { src: './web/accensione.jpg', cap: 'Accensione tramite rotazione della testina — nessun pulsante (Tav. 8)' },
     { src: './web/testina_scarto.jpg', cap: 'La testina: l’unico scarto periodico del prodotto (Tav. 8)' },
     { src: './web/full_render_frontale.jpg', cap: 'Render di prodotto — vista frontale' },
-    { src: './web/full_render_ambientato.jpg', cap: 'Render di prodotto — vista ambientata' },
+    { src: './web/full_render_ambientato.jpg', cap: 'Render di prodotto — vista da dietro' },
     { src: './web/istruzioni_fronte.jpg', cap: 'Istruzioni per l’uso — fronte' },
     { src: './web/istruzioni_retro.jpg', cap: 'Istruzioni per l’uso — retro' }
   ];
@@ -1440,27 +1260,27 @@
     },
     collo: {
       k: 'Interfaccia tecnica', t: 'Collo', m: 'POM / Delrin — polimero tecnico autolubrificante',
-      info: ['Trasmette la vibrazione del motore a 260 Hz', 'Snap fit anulare ad alta resistenza a fatica', 'Stabilità dimensionale in ambiente umido', 'Sigilla il corpo: contribuisce alla tenuta IPX7'],
+      info: ['Trasmette la vibrazione del motore a 260 Hz', 'Snap fit anulare ad alta resistenza a fatica', 'Stabilità dimensionale in ambiente umido'],
       explode: 13
     },
     corpo: {
       k: 'Componente permanente', t: 'Corpo', m: 'Alluminio 6061 anodizzato — CNC dal pieno',
-      info: ['Progettato per durare 10+ anni — 2–3 volte un elettrico convenzionale', 'Tenuta IPX7: 1 metro per 30 minuti (IEC 60529)', 'Due parti a vite: si apre in 2–3 giri, senza attrezzi', 'Riciclabile senza perdita di proprietà: rifondere alluminio costa il 95% di energia in meno'],
+      info: ['Progettato per durare 10+ anni — il doppio di un elettrico convenzionale', 'Tenuta IPX7: 1 metro per 30 minuti (IEC 60529)', 'Due parti a vite: si apre in 2 giri, senza attrezzi', 'Riciclabile senza perdita di proprietà: rifondere alluminio costa il 95% di energia in meno'],
       explode: 0
     },
     motore: {
-      k: 'Cuore tecnico', t: 'Motore sonico', m: 'Motorino DC Ø16 mm con contrappeso eccentrico — componente standard di mercato',
-      info: ['31.000 movimenti/min ≈ 260 Hz, come i sonici leader di mercato', 'Contrappeso a mezzaluna: è la massa eccentrica a generare la vibrazione', 'Il perno di trasmissione entra nel collo e porta la vibrazione alla testina', 'Componente commerciale, non proprietario: riparabile'],
+      k: 'Cuore tecnico', t: 'Motore sonico', m: '',
+      info: ['Fa vibrare la testina: oscillazione sonica a ~260 Hz (≈31.000 mov/min)', 'Si accende ruotando di 180° il suo perno, che è anche l\'elemento che vibra', 'Il perno porta la vibrazione attraverso il collo fino alla testina'],
       explode: 0
     },
     batteria: {
       k: 'Componente sostituibile', t: 'Batteria', m: 'Li-ion 14500 · 3,7 V · 800 mAh (3 Wh)',
-      info: ['Formato standard 14500 (dimensioni AA): reperibile ovunque', 'Si estrae senza attrezzi: il corpo si svita in 2–3 giri', '~1 sostituzione prevista nei 10 anni (vita cella 300–500 cicli)', 'A fine vita nel RAEE: recupero di litio e cobalto'],
+      info: ['Formato standard 14500 (dimensioni AA): reperibile ovunque', '~1 sostituzione prevista nei 10 anni (vita cella 300–500 cicli)', 'A fine vita nel RAEE: recupero di litio e cobalto'],
       explode: 0
     },
     base: {
-      k: 'Ricarica', t: 'Pogo pin', m: 'Tre contatti magnetici 5 V / 1 A sul fondo del corpo',
-      info: ['Integrati nel fondo del corpo inferiore: nessuna base separata da smaltire', 'Allineamento automatico magnetico', 'Nessuna porta USB: impermeabilità IPX7 preservata', 'Ricarica completa in ~2 ore · autonomia ~30 giorni'],
+      k: 'Ricarica', t: 'Pogo pin', m: 'Tre contatti magnetici 5 V / 1 A sul fondo laterale del corpo',
+      info: ['Integrati sul fondo laterale del corpo inferiore: nessuna base separata da smaltire', 'Allineamento automatico magnetico', 'Ricarica completa in ~2 ore · autonomia ~30 giorni'],
       explode: 0
     }
   };
@@ -1637,8 +1457,9 @@
     add('batteria', cyl(7.05, 2),  steel, 49,   bOff);   // ghiera positiva
     add('batteria', cyl(2, 2),     steel, 51.5, bOff);   // bottone +
 
-    /* motore sonico Ø16 × 42 mm (rif. NFP-161242): cassa, fondello con cavetti,
-       collarino, contrappeso a mezzaluna e perno di trasmissione.
+    /* attuatore a vibrazione su misura Ø16 × 42 mm (non un motore standard): cassa, fondello
+       con cavetti, collarino, contrappeso a mezzaluna e perno di trasmissione — il perno è
+       l'elemento che vibra e si attiva ruotando di 180°.
        Tutto resta sotto quota 102 mm: il corpo lo copre interamente */
     const mOff = -72;
     add('motore', cyl(0.6, 5),  wireR, 57.5, mOff,  2.2); // cavetto +
