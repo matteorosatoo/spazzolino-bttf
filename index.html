@@ -139,19 +139,40 @@
     60%  { transform: perspective(1300px) rotateX(180deg); animation-timing-function: cubic-bezier(.45,.02,.3,1); } /* resta su */
     100% { transform: perspective(1300px) rotateX(0deg); }                                              /* richiusa, morbida */
   }
-  /* clic sul logo: parte come un razzo verso sinistra, esce dallo schermo
-     e rientra da destra — un giro completo, ritorno al futuro */
+  /* clic sul logo: parte come un razzo verso sinistra ed esce dallo schermo;
+     mentre è fuori scena parte il video. A video finito rientra da destra —
+     ritorno al futuro. L'animazione è spezzata in due fasi (out / in) così il
+     video può girare nel mezzo per tutta la sua durata. */
   .hero-logo-wrap { line-height: 0; margin: 0; cursor: pointer; }
-  .hero-logo-wrap.fly { animation: rocketFly 1.7s linear both; }
-  @keyframes rocketFly {
-    0%    { transform: translateX(0) rotate(0deg); filter: none; animation-timing-function: var(--ease); }
-    9%    { transform: translateX(26px) rotate(1.2deg); animation-timing-function: cubic-bezier(.65,-.05,.95,.4); }
-    20%   { filter: drop-shadow(60px 0 18px rgba(200,184,122,.45)); }
-    49.9% { transform: translateX(-130vw) rotate(-5deg); filter: drop-shadow(90px 0 24px rgba(200,184,122,.55)); }
-    50.1% { transform: translateX(130vw) rotate(-5deg); filter: drop-shadow(90px 0 24px rgba(200,184,122,.55)); animation-timing-function: cubic-bezier(.05,.6,.25,1); }
-    85%   { filter: drop-shadow(40px 0 12px rgba(200,184,122,.25)); }
-    100%  { transform: translateX(0) rotate(0deg); filter: none; }
+  .hero-logo-wrap.fly-out { animation: rocketOut .85s both; }
+  .hero-logo-wrap.fly-in  { animation: rocketIn .9s both; }
+  @keyframes rocketOut {
+    0%   { transform: translateX(0) rotate(0deg); filter: none; animation-timing-function: cubic-bezier(.5,0,.85,.3); }
+    14%  { transform: translateX(30px) rotate(1.4deg); animation-timing-function: cubic-bezier(.6,-.05,.95,.35); } /* carica */
+    30%  { filter: drop-shadow(60px 0 18px rgba(200,184,122,.45)); }
+    100% { transform: translateX(-130vw) rotate(-5deg); filter: drop-shadow(90px 0 24px rgba(200,184,122,.55)); }  /* fuori a sinistra */
   }
+  @keyframes rocketIn {
+    0%   { transform: translateX(130vw) rotate(-5deg); filter: drop-shadow(90px 0 24px rgba(200,184,122,.55)); animation-timing-function: cubic-bezier(.05,.6,.25,1); } /* da destra */
+    70%  { filter: drop-shadow(40px 0 12px rgba(200,184,122,.25)); }
+    100% { transform: translateX(0) rotate(0deg); filter: none; }
+  }
+  /* overlay video a tutto schermo */
+  .intro-video {
+    position: fixed; inset: 0; z-index: 9999; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity .45s ease;
+  }
+  .intro-video.show { opacity: 1; visibility: visible; }
+  .intro-video video { width: 100%; height: 100%; object-fit: cover; }
+  .intro-skip {
+    position: absolute; bottom: 28px; right: 28px;
+    background: rgba(0,0,0,.4); color: #e9e8e3; border: 1px solid rgba(233,232,227,.4);
+    padding: 9px 18px; border-radius: 999px; cursor: pointer; font: inherit;
+    font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    backdrop-filter: blur(4px); transition: background .2s, color .2s;
+  }
+  .intro-skip:hover { background: rgba(233,232,227,.92); color: #111; }
   .hero-scroll {
     position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 2;
     font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(233,232,227,.3);
@@ -560,6 +581,12 @@
   </div>
   <div class="hero-scroll">Scorri</div>
 </header>
+
+<!-- ================= VIDEO INTRO (parte al clic sul logo) ================= -->
+<div class="intro-video" id="intro-video" aria-hidden="true">
+  <video id="intro-video-el" src="./web/intro.mp4" poster="./web/intro_poster.jpg" muted playsinline preload="auto"></video>
+  <button class="intro-skip" id="intro-skip" type="button">Salta ›</button>
+</div>
 
 <!-- ================= IL PROBLEMA ================= -->
 <section id="problema">
@@ -983,15 +1010,42 @@
       if (e.animationName === 'heroIn') img.classList.add('entered');
     });
   });
+  /* clic: il logo esce a sinistra; finita l'uscita parte il video a tutto
+     schermo; quando il video finisce (o si salta) il logo rientra da destra */
+  const introWrap = document.getElementById('intro-video');
+  const introVid  = document.getElementById('intro-video-el');
+  const introSkip = document.getElementById('intro-skip');
+  let playing = false;
+
+  function startVideo() {
+    introWrap.classList.add('show');
+    introWrap.setAttribute('aria-hidden', 'false');
+    try { introVid.currentTime = 0; } catch (_) {}
+    const p = introVid.play();
+    if (p && p.catch) p.catch(endVideo);   // se il browser blocca il play, rientra subito
+  }
+  function endVideo() {
+    if (!playing) return;
+    playing = false;
+    introVid.pause();
+    introWrap.classList.remove('show');
+    introWrap.setAttribute('aria-hidden', 'true');
+    rocket.classList.remove('fly-out');
+    rocket.classList.add('fly-in');        // rientro da destra
+  }
+
   rocket.addEventListener('click', () => {
-    if (rocket.classList.contains('fly')) return;
-    rocket.classList.add('fly');
+    if (playing || rocket.classList.contains('fly-out') || rocket.classList.contains('fly-in')) return;
+    playing = true;
+    rocket.classList.add('fly-out');
   });
   rocket.addEventListener('animationend', (e) => {
-    if (e.animationName === 'rocketFly') {
-      rocket.classList.remove('fly');
-    }
+    if (e.animationName === 'rocketOut') startVideo();
+    if (e.animationName === 'rocketIn')  rocket.classList.remove('fly-in');
   });
+  introVid.addEventListener('ended', endVideo);
+  introSkip.addEventListener('click', endVideo);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') endVideo(); });
 
   /* nav: scura sopra la hero, chiara dopo */
   const nav = document.getElementById('nav');
