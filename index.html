@@ -1439,6 +1439,18 @@
      Batteria e motore non esistono nel file: vengono costruiti come solidi
      elementari in quota reale (mm) e nell'esploso escono dalla giunzione. */
   let clipLower = null, clipUpper = null, cutY = 0, supOff = 0, infOff = 0, exTargetY = 0, exZoom = 1.6;
+  /* le due metà del corpo: a riposo il corpo è un solo pezzo intero (nessun taglio,
+     così non si vede l'anello di giunzione); il taglio si attiva solo nell'esploso */
+  const bodyLower = [], bodyUpper = [];
+  let splitActive = null;
+  function setBodySplit(active) {
+    if (active === splitActive) return;
+    splitActive = active;
+    const setPlanes = (mesh, planes) => (Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+      .forEach(m => { if (m) { m.clippingPlanes = planes; m.needsUpdate = true; } });
+    bodyLower.forEach(mesh => setPlanes(mesh, active ? [clipLower] : null));
+    bodyUpper.forEach(mesh => { mesh.visible = active; setPlanes(mesh, active ? [clipUpper] : null); });
+  }
 
   function buildInternals(object) {
     if (!zones.corpo.length) return;
@@ -1474,7 +1486,11 @@
       setClip(upper, clipUpper);
       mesh.parent.add(upper);
       zones.corpo.push(upper);
+      bodyLower.push(mesh);
+      bodyUpper.push(upper);
     });
+    /* stato iniziale: corpo chiuso e intero (metà inferiore senza taglio, superiore nascosta) */
+    setBodySplit(false);
 
     /* sopra la giunzione tutto sale insieme: metà superiore, collo, testina;
        eventuali mesh sul fondo (zona pogo pin) seguono la metà inferiore */
@@ -1652,6 +1668,9 @@
       explodeNow += (explodeTarget - explodeNow) * 0.07;
       applyExplode(explodeNow);
     }
+    /* il corpo si divide solo quando l'esploso è in corso: a riposo resta un pezzo
+       intero, così l'anello di giunzione dei due piani di taglio non è visibile */
+    setBodySplit(explodeTarget > 0 || explodeNow > 0.002);
     /* l'esploso è più alto del prodotto chiuso: la camera arretra un po' da sola */
     const zoomTarget = explodeTarget ? exZoom : 1;
     if (Math.abs(zoomTarget - zoomNow) > 0.002) {
