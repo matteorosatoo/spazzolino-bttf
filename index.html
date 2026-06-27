@@ -644,11 +644,11 @@
             <div class="waste-sum">≈ <b>2,8 kg</b> di plastica mista, motori e batterie <a href="#fonti" style="color:inherit;">[F1]</a></div>
           </div>
           <div class="waste-col">
-            <div class="cap"><b>Back to the Future</b>1 corpo · 40 testine + 1 batteria</div>
+            <div class="cap"><b>Back to the Future</b>1 corpo · 40 testine + 1 batteria + imballi</div>
             <div class="pictos" data-anim="pictos-right">
               <!-- 1 corpo + 40 testine generati via JS -->
             </div>
-            <div class="waste-sum">≈ <b>0,26 kg</b>, quasi tutto testine bio-based — <b>−91%</b></div>
+            <div class="waste-sum">≈ <b>0,76 kg</b> — di cui ~0,5 kg cartoncino riciclabile — <b>−73%</b></div>
           </div>
         </div>
       </div>
@@ -701,10 +701,10 @@
       <div class="goal rise d2">
         <div class="n">GOAL 02</div>
         <h3>Minimo scarto</h3>
-        <p>L'unico componente consumabile è la testina: quattro all'anno, agganciate a snap fit, in bioplastica con setole vegetali. L'elettrico convenzionale aggiunge un corpo intero — motore e batteria compresi — ogni 5 anni circa.</p>
+        <p>L'unico componente consumabile è la testina: quattro all'anno, agganciate a snap fit, in bioplastica con setole vegetali. Contando anche gli imballi in cartoncino riciclabile, il rifiuto totale resta ~76 g all'anno, contro i ~280 g di un convenzionale, che ogni 5 anni circa aggiunge un corpo intero — motore e batteria compresi.</p>
         <div class="viz mini-compare" data-anim="mini">
           <div class="mc-row"><span>Tradizionale</span><div class="mc-bar"><span class="mc-fill" style="background:#c9c8c2" data-w="100%"></span></div><b>~280 g/anno</b></div>
-          <div class="mc-row"><span>BTTF</span><div class="mc-bar"><span class="mc-fill" style="background:var(--gold)" data-w="9%"></span></div><b>~26 g/anno</b></div>
+          <div class="mc-row"><span>BTTF</span><div class="mc-bar"><span class="mc-fill" style="background:var(--gold)" data-w="27%"></span></div><b>~76 g/anno</b></div>
         </div>
       </div>
       <div class="goal rise d3">
@@ -1495,8 +1495,8 @@
     /* sopra la giunzione tutto sale insieme: metà superiore, collo, testina;
        eventuali mesh sul fondo (zona pogo pin) seguono la metà inferiore */
     PARTS.corpo.explode   = 0;          // gestito per-mesh dalle due metà
-    PARTS.collo.explode   = 0;          // collo = parte della testina (oro): resta fermo
-    PARTS.testina.explode = 0;          // testina (oro): resta ferma in alto
+    PARTS.collo.explode   = 0;          // collo (oro): resta sul riferimento, il corpo si apre sotto
+    PARTS.testina.explode = 22 * mm;    // testina (oro): si sfila verso l'alto dal collo (snap fit)
     PARTS.base.explode    = -150 * mm;
 
     const steel  = new THREE.MeshStandardMaterial({ color: 0xc9c9c9, metalness: 0.9,  roughness: 0.3 });
